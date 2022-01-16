@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "DAWDb": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=DAWDb;Integrated Security=True;Connect Timeout=30;MultipleActiveResultSets=true"
+  }
+
+}

@@ -2,9 +2,19 @@
 <html>
 <head>
     <title>Downtown Books: @ViewBag.Title</title>
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <header>Welcome to Downtown Books!</header>
+    <header>
+        <h1>Welcome to Downtown Books!</h1>
+        <menu>
+            <ul>
+                <li><a asp-controller ="App" asp-action ="Index">Home</a></li>
+                <li><a asp-controller ="App" asp-action ="About">About</a></li>
+                <li><a asp-controller ="App" asp-action ="Contact">Contact</a></li>
+            </ul>
+        </menu>
+    </header>
     <section>
         <h2>@ViewBag.Title</h2>
         @RenderBody()

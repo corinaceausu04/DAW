@@ -12,5 +12,27 @@ namespace DAW.Controllers
         {
             return View();
         }
+
+        [HttpGet("contact")]
+        public IActionResult Contact()
+        {
+
+            return View();
+        }
+
+        [HttpPost("contact")]
+        public IActionResult Contact(ViewModels.ContactViewModel model)
+        {
+
+            return View();
+        }
+
+        [HttpGet("about")]
+        public IActionResult About()
+        {
+
+
+            return View();
+        }
     }
 }
