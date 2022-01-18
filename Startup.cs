@@ -1,3 +1,5 @@
+using DAW.Data.Abstractions;
+using DAW.Data.Manager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,9 +23,14 @@ namespace DAW
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddDbContext<Data.DAWContext>();
+            services.AddDbContext<Data.DAWContext>(cfg => {
+                cfg.UseSqlServer();            
+            });
             services.AddRazorPages();
             services.AddControllersWithViews();
+
+            services.AddScoped<IProductManager, ProductManager>();
+            services.AddScoped<IOrderManager, OrderManager>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -49,7 +56,7 @@ namespace DAW
             {
                 cfg.MapRazorPages();
 
-                cfg.MapControllerRoute("Default", "/{controller}/{action}/{id?}", new { controller = "App", action = "Index" });
+                cfg.MapControllerRoute("Default", "/{controller}/{action}/{id?}",new {controller = "App", action = "Index" });
             });
         }
     }

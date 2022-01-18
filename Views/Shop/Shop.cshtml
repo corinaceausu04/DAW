@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Product>
+<h1>Count: @Model.Count()</h1>
+@foreach (var p in Model)
+{   <img src="@p.Image"/>
+    <li>@p.Title</li>
+    
+}
