@@ -21,7 +21,6 @@ namespace DAW.Data
         public DbSet<Order> Order { get; set; }
         public DbSet<Phones> Phones { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        //public object Product { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,7 +45,7 @@ namespace DAW.Data
                 .HasOne<User>()
                 .WithMany()
                 .HasForeignKey(o => o.Id_userId);
-
+                
             //many to many
             modelBuilder.Entity<OrderItem>()
                 .HasKey(oi => new { oi.ProductId, oi.OrderId });

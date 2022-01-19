@@ -1,8 +1,10 @@
 using DAW.Data.Abstractions;
+using DAW.Data.Entities;
 using DAW.Data.Manager;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,6 +33,8 @@ namespace DAW
 
             services.AddScoped<IProductManager, ProductManager>();
             services.AddScoped<IOrderManager, OrderManager>();
+            //services.AddIdentity<User, IdentityRole>()
+            //    .AddEntityFrameworkStores<DbContext>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

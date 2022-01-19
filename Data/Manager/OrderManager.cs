@@ -52,10 +52,5 @@ namespace DAW.Data.Manager
                 products.Add(_context.Products.FirstOrDefault(p => p.Id == prod.ProductId));
             return products;
         }
-
-        public IEnumerable<Order> GetUserOrders(User user)
-        {
-            return _context.Order.Where(o => o.Id_userId == user.Id).ToList();
-        }
     }
 }
