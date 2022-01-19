@@ -1,3 +1,4 @@
+using DAW.Data;
 using DAW.Data.Abstractions;
 using DAW.Data.Entities;
 using DAW.Data.Manager;
@@ -25,6 +26,7 @@ namespace DAW
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DbContext, DAWContext>();
             services.AddDbContext<Data.DAWContext>(cfg => {
                 cfg.UseSqlServer();            
             });
@@ -33,8 +35,8 @@ namespace DAW
 
             services.AddScoped<IProductManager, ProductManager>();
             services.AddScoped<IOrderManager, OrderManager>();
-            //services.AddIdentity<User, IdentityRole>()
-            //    .AddEntityFrameworkStores<DbContext>();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<DbContext>();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
