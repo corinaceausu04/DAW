@@ -1,6 +1,7 @@
 ﻿using DAW.Data;
 using DAW.Data.Abstractions;
 using DAW.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,11 @@ namespace DAW.Controllers
 
             return View(results.ToList());
         }
+        [Authorize(Roles = "admin")]
         [HttpGet("GetProduct/{id}")]
-        public ActionResult<Product> GetProductById(int productId)
+        public ActionResult<Product> GetProductById(int id)
         {
-            var product = _productManager.GetProductById(productId);
+            var product = _productManager.GetProductById(id);
 
             if (product == null)
                 return BadRequest("Product was not found!");
@@ -46,7 +48,7 @@ namespace DAW.Controllers
         }
 
         [HttpPost("CreateProduct")]
-        public async Task<ActionResult<Product>> CreateProduct(Product new_product)
+        public async Task<ActionResult<Product>> CreateProduct([FromBody]Product new_product)
         {
             if (new_product == null)
                 return BadRequest("Data was not send!");
@@ -59,7 +61,7 @@ namespace DAW.Controllers
         }
 
         [HttpPut("UpdateProduct")]
-        public async Task<IActionResult> UpdateProduct(Product upd_product)
+        public async Task<IActionResult> UpdateProduct([FromBody]Product upd_product)
         {
             var updateProduct = await _productManager.UpdateParoductAsync(upd_product);
 
@@ -70,7 +72,7 @@ namespace DAW.Controllers
         }
 
         [HttpDelete("DeleteProduct")]
-        public async Task<IActionResult> DeleteProduct(Product del_product)
+        public async Task<IActionResult> DeleteProduct([FromBody]Product del_product)
         {
             var delProduct = await _productManager.DeleteProduct(del_product);
 
